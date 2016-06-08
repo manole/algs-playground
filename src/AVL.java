@@ -62,7 +62,7 @@ public class AVL<Key extends Comparable, Value> {
   public Node delete(Node node, Key key) {
     if(node == null) return null;
 
-    int cmp = key.compareTo(key);
+    int cmp = key.compareTo(node.key);
 
     if(cmp < 0) node.left = delete(node.left, key);
     else if(cmp > 0) node.right = delete(node.right, key);
@@ -108,6 +108,9 @@ public class AVL<Key extends Comparable, Value> {
     System.out.println(avl.get(4));
     System.out.println(avl.get(0));
     avl.delete(0);
+    System.out.println(avl.get(0));
+    avl.delete(0);
+    avl.put(0, "Hellow0");
     System.out.println(avl.get(0));
   }
 
