@@ -1,4 +1,4 @@
-public class AVL<Key extends Comparable, Value> {
+public class BST<Key extends Comparable, Value> {
 
   private Node root;
 
@@ -6,7 +6,6 @@ public class AVL<Key extends Comparable, Value> {
     Key key;
     Value value;
     int size;
-    int height;
     Node left, right;
 
     public Node(Key key, Value value) {
@@ -32,58 +31,8 @@ public class AVL<Key extends Comparable, Value> {
     else {
       node.value = value;
     }
-
-    // positive left heavy, negative right heavy
-    int bal = height(node.left) - height(node.right);
-    // left heavy
-    if (bal > 1 && key.compareTo(node.key) < 0) {
-      rotateRight(node);
-    }
-
-    if (bal > 1 && key.compareTo(node.key) > 0) {
-      node.left = rotateLeft(node.left);
-      rotateRight(node);
-    }
-
-    // right heavy
-    if (bal < -1 && key.compareTo(node.key) > 0) {
-      rotateLeft(node);
-    }
-
-    // right let
-    if (bal < -1 && key.compareTo(node.key) < 0) {
-      node.right = rotateRight(node.right);
-      rotateLeft(node);
-    }
     node.size = size(node.left) + size(node.right) + 1;
-    node.height = Math.max(height(node.left), + height(node.right)) + 1;
     return node;
-  }
-
-  private Node rotateLeft(Node node) {
-    Node top = node.right;
-    node.right = top.left;
-    top.left = node;
-
-    node.size = Math.max(height(node.right), height(node.left)) + 1;
-    top.size = Math.max(height(top.right), height(top.left)) + 1;
-
-    return top;
-  }
-
-  private Node rotateRight(Node node) {
-    Node top = node.left;
-    node.left = top.right;
-    top.right = node;
-
-    node.size = Math.max(height(node.right), height(node.left)) + 1;
-    top.size = Math.max(height(top.right), height(top.left)) + 1;
-
-    return top;
-  }
-
-  private int height(Node node) {
-    return node == null ? 0 : node.height;
   }
 
   public Value get(Key key) {
@@ -147,18 +96,22 @@ public class AVL<Key extends Comparable, Value> {
   }
 
   public static void main(String[] args) {
-    AVL<Integer, String> avl = new AVL<>();
+    BST<Integer, String> avl = new BST<>();
     avl.put(1, "Hellow1");
     avl.put(2, "Hellow2");
-    avl.put(3, "Hellow3");
+    avl.put(1, "Hellow11");
+    avl.put(0, "Hellow0");
     avl.put(4, "Hellow4");
-    avl.put(5, "Hellow5");
 
     System.out.println(avl.get(1));
     System.out.println(avl.get(2));
-    System.out.println(avl.get(3));
     System.out.println(avl.get(4));
-    System.out.println(avl.get(5));
+    System.out.println(avl.get(0));
+    avl.delete(0);
+    System.out.println(avl.get(0));
+    avl.delete(0);
+    avl.put(0, "Hellow0");
+    System.out.println(avl.get(0));
   }
 
 }
