@@ -12,6 +12,7 @@ public class AVL<Key extends Comparable, Value> {
     public Node(Key key, Value value) {
       this.key = key;
       this.value = value;
+      this.height = 1;
     }
   }
 
@@ -32,31 +33,31 @@ public class AVL<Key extends Comparable, Value> {
     else {
       node.value = value;
     }
+    // update the height of a;
+    node.height = Math.max(height(node.left), + height(node.right)) + 1;
 
     // positive left heavy, negative right heavy
     int bal = height(node.left) - height(node.right);
     // left heavy
-    if (bal > 1 && key.compareTo(node.key) < 0) {
-      rotateRight(node);
+    if (bal > 1 && key.compareTo(node.left.key) < 0) {
+      return rotateRight(node);
     }
 
-    if (bal > 1 && key.compareTo(node.key) > 0) {
+    if (bal > 1 && key.compareTo(node.left.key) > 0) {
       node.left = rotateLeft(node.left);
-      rotateRight(node);
+      return rotateRight(node);
     }
 
     // right heavy
-    if (bal < -1 && key.compareTo(node.key) > 0) {
-      rotateLeft(node);
+    if (bal < -1 && key.compareTo(node.right.key) > 0) {
+      return rotateLeft(node);
     }
 
     // right let
-    if (bal < -1 && key.compareTo(node.key) < 0) {
+    if (bal < -1 && key.compareTo(node.right.key) < 0) {
       node.right = rotateRight(node.right);
-      rotateLeft(node);
+      return rotateLeft(node);
     }
-    node.size = size(node.left) + size(node.right) + 1;
-    node.height = Math.max(height(node.left), + height(node.right)) + 1;
     return node;
   }
 
@@ -65,8 +66,8 @@ public class AVL<Key extends Comparable, Value> {
     node.right = top.left;
     top.left = node;
 
-    node.size = Math.max(height(node.right), height(node.left)) + 1;
-    top.size = Math.max(height(top.right), height(top.left)) + 1;
+    node.height = Math.max(height(node.right), height(node.left)) + 1;
+    top.height = Math.max(height(top.right), height(top.left)) + 1;
 
     return top;
   }
@@ -76,8 +77,8 @@ public class AVL<Key extends Comparable, Value> {
     node.left = top.right;
     top.right = node;
 
-    node.size = Math.max(height(node.right), height(node.left)) + 1;
-    top.size = Math.max(height(top.right), height(top.left)) + 1;
+    node.height = Math.max(height(node.right), height(node.left)) + 1;
+    top.height = Math.max(height(top.right), height(top.left)) + 1;
 
     return top;
   }
@@ -146,19 +147,32 @@ public class AVL<Key extends Comparable, Value> {
     return findMin(node.left);
   }
 
+  public void printInOrder() {
+    printInOrder(root);
+  }
+
+  private void printInOrder(Node node) {
+    if(node == null) return;
+    printInOrder(node.left);
+    System.out.println(node.value);
+    printInOrder(node.right);
+  }
+
   public static void main(String[] args) {
     AVL<Integer, String> avl = new AVL<>();
     avl.put(1, "Hellow1");
-    avl.put(2, "Hellow2");
+    avl.put(5, "Hellow5");
     avl.put(3, "Hellow3");
     avl.put(4, "Hellow4");
-    avl.put(5, "Hellow5");
+    avl.put(2, "Hellow2");
 
-    System.out.println(avl.get(1));
-    System.out.println(avl.get(2));
-    System.out.println(avl.get(3));
-    System.out.println(avl.get(4));
-    System.out.println(avl.get(5));
+    avl.printInOrder();
+
+//    System.out.println(avl.get(1));
+//    System.out.println(avl.get(2));
+//    System.out.println(avl.get(3));
+//    System.out.println(avl.get(4));
+//    System.out.println(avl.get(5));
   }
 
 }
