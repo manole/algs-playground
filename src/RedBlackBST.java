@@ -59,12 +59,9 @@ public class RedBlackBST<Key extends Comparable, Value> {
     if(node == null) return null;
 
     int cmp = key.compareTo(node.key);
-
     if(cmp < 0) return get(node.left, key);
     else if(cmp > 0) return get(node.right, key);
-    else {
-      return node;
-    }
+    else return node;
   }
 
   private Node rotateLeft(Node node) {
