@@ -1,7 +1,7 @@
-public class MissingElement {
+public class Q19 {
 
-  // you are given a list of numbers 1 -> n
-  // One of the integers is missing in the list. Write an efficient code to find the missing integer.
+  // Q: You are given a list of numbers 1 -> n
+  //    One of the integers is missing in the list. Write an efficient code to find the missing integer.
 
   static void sumFormula(int a[]) {
     if(a == null || a.length < 1)

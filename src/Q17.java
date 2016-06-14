@@ -1,4 +1,6 @@
-public class RedBlackBST<Key extends Comparable, Value> {
+public class Q17<Key extends Comparable, Value> {
+
+  // Q: Implement the self balancing Red Black BST
 
   private Node root;
 
@@ -111,7 +113,7 @@ public class RedBlackBST<Key extends Comparable, Value> {
   }
 
   public static void main(String[] args) {
-    RedBlackBST<Integer, String> avl = new RedBlackBST<>();
+    Q17<Integer, String> avl = new Q17<>();
     avl.put(1, "Hellow1");
     avl.put(2, "Hellow2");
     avl.put(1, "Hellow11");

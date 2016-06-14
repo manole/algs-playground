@@ -1,5 +1,5 @@
 public class Q25 {
-  // Q: Convert a BST into a DLL in place.
+  // Q: Convert a BT into a DLL in place.
 
   static class Node {
     int value;

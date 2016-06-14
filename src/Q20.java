@@ -1,4 +1,6 @@
-public class KthElement<Value> {
+public class Q20<Value> {
+
+  // Q: Get the kth element form the end of a linked list.
 
   private static final String ERR = "The list has fewer than k elements";
   private Node first;
@@ -62,7 +64,7 @@ public class KthElement<Value> {
     }
 
   public static void main(String[] args) {
-    KthElement<Integer> kth = new KthElement<>();
+    Q20<Integer> kth = new Q20<>();
     kth.add(1);
     kth.add(2);
     kth.add(3);

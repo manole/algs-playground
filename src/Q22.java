@@ -10,7 +10,7 @@ public class Q22 {
   //3) Binary tree traversal questions like left view, right view, top view, bottom view,    (REVIEW)
   //   maximum of a level, minimum of a level, children sum property, diameter etc.
 
-  //4) Convert a BST into a DLL and DLL to BST in place.
+  //4) Convert a Q18 into a DLL and DLL to Q18 in place.
 
   //5) Vertical traversal of a Binary Tree.
 

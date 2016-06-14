@@ -1,4 +1,6 @@
-public class BST<Key extends Comparable, Value> {
+public class Q18<Key extends Comparable, Value> {
+
+  // Q: implement a self balancing Q18 tree
 
   private Node root;
 
@@ -6,11 +8,13 @@ public class BST<Key extends Comparable, Value> {
     Key key;
     Value value;
     int size;
+    int height;
     Node left, right;
 
     public Node(Key key, Value value) {
       this.key = key;
       this.value = value;
+      this.height = 1;
     }
   }
 
@@ -31,8 +35,58 @@ public class BST<Key extends Comparable, Value> {
     else {
       node.value = value;
     }
-    node.size = size(node.left) + size(node.right) + 1;
+    // update the height of a;
+    node.height = Math.max(height(node.left), + height(node.right)) + 1;
+
+    // positive left heavy, negative right heavy
+    int bal = height(node.left) - height(node.right);
+    // left heavy
+    if (bal > 1 && key.compareTo(node.left.key) < 0) {
+      return rotateRight(node);
+    }
+
+    if (bal > 1 && key.compareTo(node.left.key) > 0) {
+      node.left = rotateLeft(node.left);
+      return rotateRight(node);
+    }
+
+    // right heavy
+    if (bal < -1 && key.compareTo(node.right.key) > 0) {
+      return rotateLeft(node);
+    }
+
+    // right let
+    if (bal < -1 && key.compareTo(node.right.key) < 0) {
+      node.right = rotateRight(node.right);
+      return rotateLeft(node);
+    }
     return node;
+  }
+
+  private Node rotateLeft(Node node) {
+    Node top = node.right;
+    node.right = top.left;
+    top.left = node;
+
+    node.height = Math.max(height(node.right), height(node.left)) + 1;
+    top.height = Math.max(height(top.right), height(top.left)) + 1;
+
+    return top;
+  }
+
+  private Node rotateRight(Node node) {
+    Node top = node.left;
+    node.left = top.right;
+    top.right = node;
+
+    node.height = Math.max(height(node.right), height(node.left)) + 1;
+    top.height = Math.max(height(top.right), height(top.left)) + 1;
+
+    return top;
+  }
+
+  private int height(Node node) {
+    return node == null ? 0 : node.height;
   }
 
   public Value get(Key key) {
@@ -95,23 +149,32 @@ public class BST<Key extends Comparable, Value> {
     return findMin(node.left);
   }
 
-  public static void main(String[] args) {
-    BST<Integer, String> avl = new BST<>();
-    avl.put(1, "Hellow1");
-    avl.put(2, "Hellow2");
-    avl.put(1, "Hellow11");
-    avl.put(0, "Hellow0");
-    avl.put(4, "Hellow4");
+  public void printInOrder() {
+    printInOrder(root);
+  }
 
-    System.out.println(avl.get(1));
-    System.out.println(avl.get(2));
-    System.out.println(avl.get(4));
-    System.out.println(avl.get(0));
-    avl.delete(0);
-    System.out.println(avl.get(0));
-    avl.delete(0);
-    avl.put(0, "Hellow0");
-    System.out.println(avl.get(0));
+  private void printInOrder(Node node) {
+    if(node == null) return;
+    printInOrder(node.left);
+    System.out.println(node.value);
+    printInOrder(node.right);
+  }
+
+  public static void main(String[] args) {
+    Q18<Integer, String> avl = new Q18<>();
+    avl.put(1, "Hellow1");
+    avl.put(5, "Hellow5");
+    avl.put(3, "Hellow3");
+    avl.put(4, "Hellow4");
+    avl.put(2, "Hellow2");
+
+    avl.printInOrder();
+
+//    System.out.println(avl.get(1));
+//    System.out.println(avl.get(2));
+//    System.out.println(avl.get(3));
+//    System.out.println(avl.get(4));
+//    System.out.println(avl.get(5));
   }
 
 }
