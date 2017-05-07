@@ -28,10 +28,10 @@ func (s *Stack) Pop() (int, error) {
 // Tests the stack.
 func main() {
 	s := new(Stack)
-	//s.Push(10)
+	s.Push(10)
 	value, err := s.Pop()
 	if err != nil {
-		fmt.Println("Stack is empty")
+		fmt.Println(err)
 	} else {
 		fmt.Printf("Got value %d\n", value)
 	}
