@@ -1,3 +1,5 @@
+package misc;
+
 public class Q23 {
   // Q: Reverse a linked list in groups of size k.
 

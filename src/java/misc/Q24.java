@@ -1,3 +1,5 @@
+package misc;
+
 public class Q24 {
   // Q: Implement a stack with push(), pop() and min() in O(1) time.
 

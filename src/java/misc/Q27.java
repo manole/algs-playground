@@ -1,3 +1,5 @@
+package misc;
+
 public class Q27 {
   // password validator
   //  Length is at least 5 characters.

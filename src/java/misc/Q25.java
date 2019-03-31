@@ -1,3 +1,5 @@
+package misc;
+
 public class Q25 {
   // Q: Convert a BT into a DLL in place.
 

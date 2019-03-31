@@ -1,3 +1,5 @@
+package misc;
+
 public class Q20<Value> {
 
   // Q: Get the kth element form the end of a linked list.

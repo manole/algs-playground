@@ -1,3 +1,5 @@
+package misc;
+
 public class Q21 {
 
   // Q: A list of n string, each of length n, is sorted into lexicographic order using

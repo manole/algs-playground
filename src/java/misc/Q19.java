@@ -1,3 +1,5 @@
+package misc;
+
 public class Q19 {
 
   // Q: You are given a list of numbers 1 -> n

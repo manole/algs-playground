@@ -1,3 +1,5 @@
+package misc;
+
 public class Q18<Key extends Comparable, Value> {
 
   // Q: implement a self balancing Q18 tree

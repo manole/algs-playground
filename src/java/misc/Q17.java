@@ -1,3 +1,5 @@
+package misc;
+
 public class Q17<Key extends Comparable, Value> {
   // Q: Implement the self balancing Red Black BST
 
