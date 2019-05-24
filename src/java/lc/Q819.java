@@ -13,7 +13,7 @@ public class Q819 {
         for (String w : banned) {
             bannedSet.add(w.toLowerCase());
         }
-        String [] words = paragraph.split("[\\s,\\.\\?;!']");
+        String [] words = paragraph.split("[\\s,.?;!']");
         String result = words[0].toLowerCase();
         int max = 0;
 
