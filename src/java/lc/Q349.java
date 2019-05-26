@@ -1,4 +1,3 @@
-/* Copyright 2019 Amazon.com, Inc. or its affiliates. All Rights Reserved. */
 package lc;
 
 import java.util.Arrays;
